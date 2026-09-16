@@ -18,46 +18,5 @@
   }
 }
 
-@media (max-width: 900px) {
-  body {
-    overflow: auto;
-  }
-
-  .kiosk-app {
-    position: relative;
-    min-height: 100dvh;
-  }
-
-  .kiosk-screen {
-    position: relative;
-    min-height: 100dvh;
-
-    &:not(.kiosk-screen--active) {
-      display: none;
-    }
-  }
-
-  .kiosk-hero__grid,
-  .kiosk-detail__grid,
-  .kiosk-finale__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .kiosk-tiles {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .kiosk-hero__side {
-    display: none;
-  }
-
-  .kiosk-globe__wrap {
-    height: 340px;
-  }
-}
-
-@media (max-width: 600px) {
-  .kiosk-tiles {
-    grid-template-columns: 1fr;
-  }
-}
+// NOTE: viewports below 1024px are blocked by the kiosk-guard overlay (_guard.scss),
+// so no small-screen layout adaptations live here.
