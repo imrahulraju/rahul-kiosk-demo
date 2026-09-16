@@ -1,0 +1,49 @@
+// ---------- screens ----------
+.kiosk-screen {
+  position: absolute;
+  inset: 0;
+  padding: clamp(18px, 3vw, 54px) clamp(20px, 4vw, 72px) clamp(16px, 2.4vw, 34px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(60px) scale(.995);
+  filter: blur(6px);
+  transition: opacity .65s $kiosk-ease, transform .65s $kiosk-ease, filter .65s $kiosk-ease;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(900px 500px at 85% -10%, #dceaff 0%, transparent 60%),
+    radial-gradient(1000px 700px at -10% 110%, #e8f3ff 0%, transparent 55%),
+    linear-gradient(180deg, #fbfdff 0%, #eef3f9 100%);
+
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    filter: none;
+    z-index: $kiosk-z-screen;
+  }
+
+  &--exit-left {
+    transform: translateX(-60px) scale(.995);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+.kiosk-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s $kiosk-ease, transform .7s $kiosk-ease;
+
+  .kiosk-screen--active & {
+    opacity: 1;
+    transform: none;
+  }
+
+  .kiosk-screen--active &--d1 { transition-delay: .08s; }
+  .kiosk-screen--active &--d2 { transition-delay: .16s; }
+  .kiosk-screen--active &--d3 { transition-delay: .24s; }
+  .kiosk-screen--active &--d4 { transition-delay: .32s; }
+  .kiosk-screen--active &--d5 { transition-delay: .4s; }
+  .kiosk-screen--active &--d6 { transition-delay: .5s; }
+}

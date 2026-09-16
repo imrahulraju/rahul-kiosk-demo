@@ -1,0 +1,95 @@
+// ---------- finale ----------
+.kiosk-finale {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(16px, 3vw, 50px);
+    flex: 1;
+    align-items: center;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__title {
+    font-size: clamp(42px, 5.4vw, 88px);
+    line-height: .95;
+    letter-spacing: -.04em;
+    font-weight: 900;
+  }
+
+  &__title-grad {
+    color: transparent;
+    background: linear-gradient(90deg, $kiosk-blue, $kiosk-teal);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+.kiosk-circle {
+  position: relative;
+  width: min(62vh, 600px);
+  aspect-ratio: 1;
+  margin-left: auto;
+
+  &__photo {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 30px 90px rgba(15, 80, 160, .3);
+    border: 10px solid $kiosk-card;
+  }
+
+  &__photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__ring {
+    position: absolute;
+    inset: -26px;
+    border-radius: 50%;
+    border: 2px solid rgba(15, 107, 255, .35);
+    border-top-color: $kiosk-blue;
+    animation: kiosk-spin 14s linear infinite;
+  }
+
+  &__caption {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    letter-spacing: .35em;
+    font-size: 12px;
+    font-weight: 800;
+    color: #1c2c48;
+    line-height: 2;
+    text-shadow: 0 2px 10px $kiosk-card;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: $kiosk-slate;
+      margin: 8px auto 0;
+    }
+  }
+}
+
+.kiosk-btn-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+  align-items: center;
+}

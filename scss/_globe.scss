@@ -1,0 +1,183 @@
+// ---------- globe ----------
+.kiosk-globe {
+  position: relative;
+  width: min(58vh, 560px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #fff 0%, #d9ecff 12%, transparent 30%), url('../assets/globe-earth.jpg') center/cover, #bcd8f5;
+  box-shadow: 0 40px 100px rgba(20, 80, 180, .28), inset -30px -30px 80px rgba(10, 40, 100, .35), inset 20px 20px 60px rgba(255, 255, 255, .7);
+  animation: kiosk-floaty 7s ease-in-out infinite;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -2%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 70% 20%, rgba(255, 255, 255, .9), transparent 40%);
+  }
+
+  &__wrap {
+    position: relative;
+    height: min(72vh, 640px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__orbit {
+    position: absolute;
+    inset: -12%;
+    pointer-events: none;
+  }
+
+  &__orbit-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  &__ring {
+    fill: none;
+    stroke: #9dbfe8;
+    stroke-width: 1.2;
+    opacity: .7;
+    transform-origin: center;
+    animation: kiosk-spin 22s linear infinite;
+
+    &--reverse {
+      animation-duration: 32s;
+      animation-direction: reverse;
+      opacity: .5;
+    }
+  }
+
+  &__dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #0a2a5a;
+    box-shadow: 0 0 0 6px rgba(15, 107, 255, .12);
+    animation: kiosk-pulse-dot 2.4s infinite;
+
+    &--p1 { top: 6%; left: 52%; }
+    &--p2 { top: 22%; left: 8%; background: $kiosk-blue; }
+    &--p3 { top: 64%; left: 2%; background: $kiosk-blue; }
+    &--p4 { bottom: 6%; left: 34%; }
+    &--p5 { top: 10%; right: 6%; }
+    &--p6 { bottom: 22%; right: 8%; }
+  }
+
+  &__thumb {
+    position: absolute;
+    width: 124px;
+    border-radius: 14px;
+    overflow: visible;
+    background: $kiosk-card;
+    box-shadow: 0 14px 40px rgba(10, 40, 90, .28);
+    border: 2px solid rgba(255, 255, 255, .95);
+    animation: kiosk-floaty 6s ease-in-out infinite;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    z-index: 4;
+    transition: transform .2s $kiosk-ease;
+
+    &:active {
+      transform: scale(.92);
+    }
+
+    &--s1 { top: -5%; left: 6%; }
+    &--s2 { top: 4%; right: -9%; animation-delay: -1s; }
+    &--s3 { top: 42%; right: -15%; animation-delay: -2s; }
+    &--s4 { bottom: 2%; right: -6%; animation-delay: -3s; }
+    &--s5 { bottom: -6%; left: 20%; animation-delay: -4s; }
+    &--s6 { top: 42%; left: -15%; animation-delay: -5s; }
+
+    &--done .kiosk-globe__thumb-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &__thumb-img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    display: block;
+    border-radius: 11px 11px 0 0;
+  }
+
+  &__thumb-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    color: $kiosk-ink;
+  }
+
+  &__thumb-num {
+    background: $kiosk-blue;
+    color: $kiosk-card;
+    font-size: 9px;
+    font-weight: 800;
+    border-radius: 6px;
+    padding: 2px 6px;
+    letter-spacing: .08em;
+  }
+
+  &__thumb-check {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: $kiosk-green;
+    color: $kiosk-card;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transform: scale(.5);
+    transition: all .3s $kiosk-ease;
+    box-shadow: 0 6px 18px rgba(10, 138, 92, .5);
+  }
+
+  &__note {
+    position: absolute;
+    font-size: 11px;
+    letter-spacing: .3em;
+    color: $kiosk-slate-deep;
+    line-height: 1.9;
+    font-weight: 700;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: $kiosk-slate;
+      margin-top: 6px;
+    }
+
+    &--top { top: 0; left: 10%; }
+    &--bottom { bottom: 6%; left: 22%; }
+  }
+}
+
+@keyframes kiosk-floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes kiosk-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes kiosk-pulse-dot {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}

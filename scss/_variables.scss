@@ -1,0 +1,47 @@
+// ---------- kiosk design tokens ----------
+$kiosk-ink: #0a1930;
+$kiosk-ink-soft: #2c3c56;
+$kiosk-navy: #0a1528;
+$kiosk-navy-deep: #081224;
+$kiosk-muted: #5b6b82;
+$kiosk-muted-light: #8b9bb2;
+$kiosk-slate: #33415a;
+$kiosk-slate-deep: #3a4a63;
+$kiosk-slate-soft: #44546c;
+$kiosk-label-gray: #6b7d96;
+$kiosk-blue: #0f6bff;
+$kiosk-blue-deep: #0a4fd6;
+$kiosk-blue-soft: #2f8bff;
+$kiosk-sky: #1e90ff;
+$kiosk-cyan: #37a0ff;
+$kiosk-aqua: #37d0ff;
+$kiosk-teal: #00b39a;
+$kiosk-green: #0a8a5c;
+$kiosk-bg: #f4f7fb;
+$kiosk-line: #e2e9f2;
+$kiosk-card: #fff;
+$kiosk-track: #d6dee9;
+$kiosk-ease: cubic-bezier(.22, 1, .36, 1);
+$kiosk-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+
+// ---------- perk badge palette ----------
+$kiosk-badge-blue-bg: #dce9ff;
+$kiosk-badge-blue-fg: #0f6bff;
+$kiosk-badge-green-bg: #d6f3e6;
+$kiosk-badge-green-fg: #0a8a5c;
+$kiosk-badge-mint-bg: #d9f4e7;
+$kiosk-badge-mint-fg: #0a8a5c;
+$kiosk-badge-purple-bg: #e6e0ff;
+$kiosk-badge-purple-fg: #6a3df0;
+$kiosk-badge-violet-bg: #e6e0ff;
+$kiosk-badge-violet-fg: #5b2ee5;
+$kiosk-badge-red-bg: #ffe3e3;
+$kiosk-badge-red-fg: #e04040;
+$kiosk-badge-yellow-bg: #fff3cf;
+$kiosk-badge-yellow-fg: #b8860b;
+
+// ---------- layers ----------
+$kiosk-z-screen: 2;
+$kiosk-z-chrome: 99;
+$kiosk-z-toast: 200;
+$kiosk-z-video-zoom: 500;

@@ -1,0 +1,62 @@
+// ---------- type ----------
+.kiosk-eyebrow {
+  letter-spacing: .35em;
+  font-size: clamp(10px, 1vw, 14px);
+  font-weight: 700;
+  color: $kiosk-ink;
+
+  &--light {
+    color: $kiosk-muted-light;
+    font-weight: 600;
+  }
+
+  &--tagline {
+    margin-top: 10px;
+    letter-spacing: .3em;
+  }
+
+  &--tall {
+    margin-top: 12px;
+    line-height: 1.9;
+  }
+
+  &--caption {
+    margin-top: 6px;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &__normal {
+    font-weight: 400;
+  }
+}
+
+.kiosk-rule {
+  width: 44px;
+  height: 3px;
+  background: $kiosk-ink;
+  border-radius: 99px;
+  margin: 10px 0 0;
+
+  &--blue {
+    background: $kiosk-blue;
+  }
+
+  &--spaced {
+    margin: 12px 0;
+  }
+
+  &--top {
+    margin-top: 12px;
+  }
+}
+
+.kiosk-lede {
+  color: $kiosk-slate-soft;
+  font-size: clamp(14px, 1.35vw, 20px);
+  line-height: 1.55;
+  max-width: 34ch;
+  margin-top: 12px;
+}

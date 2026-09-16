@@ -1,0 +1,62 @@
+// ---------- hero ----------
+.kiosk-hero {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(380px, 1.05fr) 1.35fr;
+    gap: clamp(16px, 3vw, 60px);
+    flex: 1;
+    align-items: center;
+    min-height: 0;
+  }
+
+  &__title {
+    font-size: clamp(48px, 7.2vw, 124px);
+    line-height: .92;
+    letter-spacing: -.04em;
+    font-weight: 900;
+  }
+
+  &__title-highlight {
+    color: transparent;
+    background: linear-gradient(90deg, $kiosk-blue-deep, $kiosk-sky);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  &__subtitle {
+    letter-spacing: .42em;
+    font-size: clamp(11px, 1.15vw, 17px);
+    font-weight: 700;
+    color: $kiosk-slate;
+    margin-top: 18px;
+    line-height: 2;
+  }
+
+  &__side {
+    position: absolute;
+    right: clamp(20px, 4vw, 72px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 4vh, 48px);
+    text-align: right;
+    z-index: 3;
+  }
+
+  &__side-item {
+    font-size: 12px;
+    letter-spacing: .35em;
+    font-weight: 700;
+    color: $kiosk-slate-deep;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: $kiosk-slate;
+      margin: 10px 0 0 auto;
+    }
+  }
+}

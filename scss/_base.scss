@@ -1,0 +1,37 @@
+// ---------- reset / base ----------
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: $kiosk-font;
+  background: $kiosk-bg;
+  color: $kiosk-ink;
+  overflow: hidden;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  overscroll-behavior: none;
+}
+
+.kiosk-app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+// Hidden SVG sprite (replaces inline position:absolute)
+.kiosk-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
