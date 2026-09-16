@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AI LABS — The Art of the Possible | Kiosk</title>
+<link rel="stylesheet" href="css/kiosk.css">
+</head>
+<body>
+<!-- SVG ICON SPRITE : no emoji / symbol text anywhere, every glyph is an SVG -->
+<svg class="kiosk-sprite" width="0" height="0" aria-hidden="true"><defs>
+<symbol id="kiosk-i-touch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11.5V5.5a1.5 1.5 0 0 1 3 0v5m0-2a1.5 1.5 0 0 1 3 0v2m0-1a1.5 1.5 0 0 1 3 0v4c0 3-2 6-5 6s-4-1.5-6-5l-1.2-2.4a1.4 1.4 0 0 1 2.5-1.2L9 12.5"/><path d="M12 2.5a4.5 4.5 0 0 1 4.5 4.5M15.5 2a7 7 0 0 1 0 7"/></symbol>
+<symbol id="kiosk-i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="kiosk-i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="kiosk-i-chev-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="kiosk-i-home" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-4v-6h-4v6H6v-9H3z"/></symbol>
+<symbol id="kiosk-i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></symbol>
+<symbol id="kiosk-i-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></symbol>
+<symbol id="kiosk-i-vol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12"/></symbol>
+<symbol id="kiosk-i-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+<symbol id="kiosk-i-gear" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5zm9 3.5l-1.8.4a7 7 0 0 0-.7-1.7l1-1.6-2-2-1.6 1a7 7 0 0 0-1.7-.7L13.8 6h-3.6l-.4 1.9a7 7 0 0 0-1.7.7l-1.6-1-2 2 1 1.6a7 7 0 0 0-.7 1.7L3 13.3v2.7l1.8.4c.2.6.4 1.2.7 1.7l-1 1.6 2 2 1.6-1c.5.3 1.1.5 1.7.7l.4 1.8h2.7l.4-1.8a7 7 0 0 0 1.7-.7l1.6 1 2-2-1-1.6c.3-.5.5-1.1.7-1.7l1.8-.4z" opacity=".95"/></symbol>
+<symbol id="kiosk-i-leaf" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4C10 4 4 10 4 20c10 0 16-6 16-16zM7 17c3-5 7-9 11-11-2 4-6 8-11 11z"/></symbol>
+<symbol id="kiosk-i-users" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11a3.5 3.5 0 1 0-3.5-3.5M16 11a3.5 3.5 0 1 1-3.4 2.6M8.5 10.5A3 3 0 1 0 8.5 4.5 3 3 0 0 0 8.5 10.5zm0 1c-2.7 0-8 1.3-8 4v3h9v-3c0-.5.1-1 .2-1.4A11 11 0 0 0 8.5 11.5zm8 0c-.4 0-.9 0-1.4.1A4.6 4.6 0 0 1 16 15v3h8v-2.5c0-2.7-5.3-4-7.5-4z"/></symbol>
+<symbol id="kiosk-i-chart" viewBox="0 0 24 24" fill="currentColor"><path d="M4 20V10h3v10zm6.5 0V4h3v16zM16 20v-7h3v7z"/><path d="M3 3l6 6 4-4 8 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="kiosk-i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14 0 18M12 3c-3 3.5-3 14 0 18"/></symbol>
+<symbol id="kiosk-i-bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></symbol>
+<symbol id="kiosk-i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+<symbol id="kiosk-i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zm0 16a2 2 0 0 1 2-2h13"/></symbol>
+<symbol id="kiosk-i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2c4 2 6 6 6 11l-3 3c-5 0-9-2-11-6l3-3c0-2 2-4 5-5z"/><circle cx="14" cy="10" r="1.6" fill="currentColor"/><path d="M6 15l-3 6 6-3M9 12L4 8l4-1"/></symbol>
+<symbol id="kiosk-i-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21C6 16 3 12.5 3 9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 3.5-3 7-9 12z"/></symbol>
+<symbol id="kiosk-i-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4zM19 16l1 2.8L22.8 20 20 21l-1 2.8L18 21l-2.8-1L18 18.8z"/></symbol>
+<symbol id="kiosk-i-drop" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2s7 7.5 7 12a7 7 0 0 1-14 0c0-4.5 7-12 7-12z"/></symbol>
+<symbol id="kiosk-i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.7 1 1.5 1 2.5h6c0-1 .2-1.8 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+<symbol id="kiosk-i-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></symbol>
+<symbol id="kiosk-i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></symbol>
+<symbol id="kiosk-i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></symbol>
+<symbol id="kiosk-i-shrink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></g></symbol></defs></svg>
+
+<button class="kiosk-fsbtn" id="kiosk-fsbtn" title="Fullscreen" aria-label="Fullscreen"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-full"/></svg></button>
+<div class="kiosk-idlebar" id="kiosk-idlebar"></div>
+<div class="kiosk-toast" id="kiosk-toast" role="status"></div>
+<div class="kiosk-app" id="kiosk-app">
+
+  <!-- SCREEN 1 : HERO -->
+  <section class="kiosk-screen kiosk-screen--active" id="kiosk-s1">
+    <div class="kiosk-reveal kiosk-reveal--d1"><div class="kiosk-eyebrow">AI LABS</div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light kiosk-eyebrow--tagline">EXPLORE TODAY. A BRIGHTER TOMORROW.</div></div>
+    <div class="kiosk-hero__grid">
+      <div>
+        <h1 class="kiosk-hero__title kiosk-reveal kiosk-reveal--d2">THE ART<br>OF THE<br><span class="kiosk-hero__title-highlight">POSSIBLE</span></h1>
+        <div class="kiosk-reveal kiosk-reveal--d3"><div class="kiosk-rule"></div>
+          <div class="kiosk-hero__subtitle">REAL IDEAS.<br>BOLDER TOMORROWS.</div>
+          <p class="kiosk-lede">Explore how AI and intelligent technologies are shaping a smarter, more sustainable world.</p></div>
+        <div class="kiosk-reveal kiosk-reveal--d4"><button class="kiosk-cta" data-go="2"><svg class="kiosk-icon kiosk-icon--lg"><use href="#kiosk-i-touch"/></svg><span>TOUCH TO EXPLORE</span><span class="kiosk-cta__arrow"><svg class="kiosk-icon"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+      </div>
+      <div class="kiosk-globe__wrap kiosk-reveal kiosk-reveal--d3">
+        <div class="kiosk-globe__note kiosk-globe__note--top">A SMARTER<br>PLANET<br>THROUGH AI</div>
+        <div class="kiosk-globe">
+          <div class="kiosk-globe__orbit"><svg class="kiosk-globe__orbit-svg" viewBox="0 0 400 400"><ellipse class="kiosk-globe__ring" cx="200" cy="200" rx="190" ry="90" transform="rotate(-20 200 200)"/><ellipse class="kiosk-globe__ring kiosk-globe__ring--reverse" cx="200" cy="200" rx="190" ry="120" transform="rotate(30 200 200)"/><ellipse class="kiosk-globe__ring" cx="200" cy="200" rx="150" ry="190" transform="rotate(70 200 200)"/></svg></div>
+          <div class="kiosk-globe__dot kiosk-globe__dot--p1"></div><div class="kiosk-globe__dot kiosk-globe__dot--p2"></div>
+          <div class="kiosk-globe__dot kiosk-globe__dot--p3"></div><div class="kiosk-globe__dot kiosk-globe__dot--p4"></div>
+          <div class="kiosk-globe__dot kiosk-globe__dot--p5"></div><div class="kiosk-globe__dot kiosk-globe__dot--p6"></div>
+          <button class="kiosk-globe__thumb kiosk-globe__thumb--s1" data-story="0" aria-label="Open Factory of the Future"><img class="kiosk-globe__thumb-img" src="assets/story-1-factory.jpg" alt="Factory of the Future"><span class="kiosk-globe__thumb-label"><span class="kiosk-globe__thumb-num">01</span> FACTORY</span></button>
+          <button class="kiosk-globe__thumb kiosk-globe__thumb--s2" data-story="1" aria-label="Open Sustainable Operations"><img class="kiosk-globe__thumb-img" src="assets/story-2-wind.jpg" alt="Sustainable Operations"><span class="kiosk-globe__thumb-label"><span class="kiosk-globe__thumb-num">02</span> PLANET</span></button>
+          <button class="kiosk-globe__thumb kiosk-globe__thumb--s3" data-story="2" aria-label="Open People and Skills"><img class="kiosk-globe__thumb-img" src="assets/story-3-people.jpg" alt="People and Skills"><span class="kiosk-globe__thumb-label"><span class="kiosk-globe__thumb-num">03</span> PEOPLE</span></button>
+          <button class="kiosk-globe__thumb kiosk-globe__thumb--s4" data-story="3" aria-label="Open Smarter Products"><img class="kiosk-globe__thumb-img" src="assets/story-4-product.jpg" alt="Smarter Products"><span class="kiosk-globe__thumb-label"><span class="kiosk-globe__thumb-num">04</span> PRODUCTS</span></button>
+          <button class="kiosk-globe__thumb kiosk-globe__thumb--s5" data-story="4" aria-label="Open Data to Decisions"><img class="kiosk-globe__thumb-img" src="assets/story-5-data.jpg" alt="Data to Decisions"><span class="kiosk-globe__thumb-label"><span class="kiosk-globe__thumb-num">05</span> DATA</span></button>
+          <button class="kiosk-globe__thumb kiosk-globe__thumb--s6" data-story="5" aria-label="Open A More Connected World"><img class="kiosk-globe__thumb-img" src="assets/story-6-earth.jpg" alt="A More Connected World"><span class="kiosk-globe__thumb-label"><span class="kiosk-globe__thumb-num">06</span> CONNECT</span></button>
+        </div>
+        <div class="kiosk-globe__note kiosk-globe__note--bottom">IDEAS<br>INTO REAL<br>IMPACT</div>
+      </div>
+    </div>
+    <div class="kiosk-hero__side kiosk-reveal kiosk-reveal--d5"><div class="kiosk-hero__side-item">PEOPLE</div><div class="kiosk-hero__side-item">TECHNOLOGY</div><div class="kiosk-hero__side-item">IDEAS</div><div class="kiosk-hero__side-item">IMPACT</div></div>
+    <div class="kiosk-bottom kiosk-reveal kiosk-reveal--d6"><div class="kiosk-progress"><b class="kiosk-progress__label">01</b><div class="kiosk-progress__bar kiosk-progress__bar--on"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light kiosk-eyebrow--right">A BRIGHTER TOMORROW<br>TOGETHER</div></div>
+  </section>
+
+  <!-- SCREEN 2 : CHOOSE -->
+  <section class="kiosk-screen" id="kiosk-s2">
+    <div class="kiosk-choose__head">
+      <div class="kiosk-reveal kiosk-reveal--d1"><div class="kiosk-rule"></div><div class="kiosk-eyebrow kiosk-eyebrow--tall">EXPLORE<br>REAL-WORLD STORIES</div></div>
+      <h2 class="kiosk-choose__title kiosk-reveal kiosk-reveal--d2">Choose a <span class="kiosk-choose__title-highlight">story</span></h2>
+      <div class="kiosk-choose__meta"><div class="kiosk-choose__hint kiosk-reveal kiosk-reveal--d2"><svg class="kiosk-icon"><use href="#kiosk-i-touch"/></svg> Touch a tile to begin</div>
+        <div class="kiosk-eyebrow kiosk-eyebrow--light kiosk-reveal kiosk-reveal--d2 kiosk-choose__index">IDEAS<br>PEOPLE<br>TECHNOLOGY<br>A BRIGHTER<br>TOMORROW</div></div>
+    </div>
+    <div class="kiosk-tiles" id="kiosk-tilegrid"></div>
+    <div class="kiosk-bottom"><div><div class="kiosk-eyebrow">AI LABS</div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light kiosk-eyebrow--caption">REAL IDEAS. REAL IMPACT.</div></div>
+      
+      <button class="kiosk-btn" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button></div>
+  </section>
+
+  <!-- SCREEN 3 : STORY DETAIL -->
+  <!-- STORY PAGE 01 : FACTORY -->
+  <section class="kiosk-screen" id="kiosk-s3-1" data-story="0">
+    <div class="kiosk-detail__top">
+      <button class="kiosk-btn kiosk-reveal kiosk-reveal--d1" data-go="2"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-l"/></svg></span> Back to Stories</button>
+      <div class="kiosk-reveal kiosk-reveal--d1 kiosk-detail__actions"><button class="kiosk-btn" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button></div>
+    </div>
+    <div class="kiosk-detail__grid">
+      <div class="kiosk-reveal kiosk-reveal--d2">
+        <div class="kiosk-video">
+          <video class="kiosk-video__media" src="assets/story-1.mp4" poster="assets/story-1-factory.jpg" preload="metadata" playsinline></video>
+          <div class="kiosk-video__label">PEOPLE<br>TECHNOLOGY<br>A BRIGHTER<br>TOMORROW</div>
+          <div class="kiosk-video__label-right">SMART<br>MANUFACTURING<br>REAL IMPACT</div>
+          <button class="kiosk-video__play" aria-label="Play story video"><span class="kiosk-video__play-circle"><svg class="kiosk-icon kiosk-icon--lg"><use href="#kiosk-i-play" class="kiosk-video__play-use"/></svg></span></button>
+          <div class="kiosk-video__bar"><button class="kiosk-video__btn kiosk-video__pp" aria-label="Play or pause"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-play" class="kiosk-video__pp-use"/></svg></button><b class="kiosk-video__time">0:00 / 0:15</b>
+            <div class="kiosk-video__track"><div class="kiosk-video__fill"></div></div>
+            <button class="kiosk-video__btn kiosk-video__mute" aria-label="Volume"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-vol"/></svg></button><button class="kiosk-video__btn kiosk-video__fs" aria-label="Fullscreen"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-expand"/></svg></button></div>
+        </div>
+      </div>
+      <div class="kiosk-reveal kiosk-reveal--d3">
+        <div class="kiosk-story__count">STORY 01 / 06</div><div class="kiosk-rule kiosk-rule--spaced"></div>
+        <h2 class="kiosk-story__title">Factory<br>of the Future</h2><div class="kiosk-rule kiosk-rule--blue kiosk-rule--top"></div>
+        <div class="kiosk-story__scroll"><p class="kiosk-story__project"><span>Project:</span> Factory of the Future</p>
+        <p class="kiosk-story__desc"><span class="kiosk-story__desc-label">Description:</span> A leading aerospace manufacturer struggled with legacy systems, manual tracking, fragmented data, and hidden bottlenecks on its factory floor.</p>
+        <p class="kiosk-story__highlights-label">Highlights:</p><ul class="kiosk-story__highlights">
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>HCLTech created a live digital twin of the production line, using sensors and real-time data to mirror operations virtually.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>This implementation enables the manufacturer to see problems faster and optimize workflows.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>AI agents are fundamentally changing engineering operations by managing inspection, reasoning, and reporting.</span></li>
+        <li class="kiosk-story__highlight kiosk-story__highlight--impact"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span><b>Impact:</b> The solution significantly improves safety, turnaround time, and reliability while cutting costs.</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kiosk-bottom"><div class="kiosk-progress"><b class="kiosk-progress__label">01 / 06</b><div class="kiosk-progress__bar kiosk-progress__bar--on"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light">A SMARTER &nbsp;&nbsp; TOMORROW TOGETHER</div>
+      <button class="kiosk-btn--next kiosk-detail__next"><span class="kiosk-detail__next-label">Next</span> <span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+  </section>
+
+  <!-- STORY PAGE 02 : PLANET -->
+  <section class="kiosk-screen" id="kiosk-s3-2" data-story="1">
+    <div class="kiosk-detail__top">
+      <button class="kiosk-btn kiosk-reveal kiosk-reveal--d1" data-go="2"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-l"/></svg></span> Back to Stories</button>
+      <div class="kiosk-reveal kiosk-reveal--d1 kiosk-detail__actions"><button class="kiosk-btn--ghost kiosk-detail__prev" data-prev-story="0"><svg class="kiosk-icon"><use href="#kiosk-i-chev-l"/></svg> FACTORY</button><button class="kiosk-btn" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button></div>
+    </div>
+    <div class="kiosk-detail__grid">
+      <div class="kiosk-reveal kiosk-reveal--d2">
+        <div class="kiosk-video">
+          <video class="kiosk-video__media" src="assets/story-2.mp4" poster="assets/story-2-wind.jpg" preload="metadata" playsinline></video>
+          <div class="kiosk-video__label">PEOPLE<br>TECHNOLOGY<br>A BRIGHTER<br>TOMORROW</div>
+          <div class="kiosk-video__label-right">CLEAN<br>ENERGY<br>REAL IMPACT</div>
+          <button class="kiosk-video__play" aria-label="Play story video"><span class="kiosk-video__play-circle"><svg class="kiosk-icon kiosk-icon--lg"><use href="#kiosk-i-play" class="kiosk-video__play-use"/></svg></span></button>
+          <div class="kiosk-video__bar"><button class="kiosk-video__btn kiosk-video__pp" aria-label="Play or pause"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-play" class="kiosk-video__pp-use"/></svg></button><b class="kiosk-video__time">0:00 / 0:15</b>
+            <div class="kiosk-video__track"><div class="kiosk-video__fill"></div></div>
+            <button class="kiosk-video__btn kiosk-video__mute" aria-label="Volume"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-vol"/></svg></button><button class="kiosk-video__btn kiosk-video__fs" aria-label="Fullscreen"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-expand"/></svg></button></div>
+        </div>
+      </div>
+      <div class="kiosk-reveal kiosk-reveal--d3">
+        <div class="kiosk-story__count">STORY 02 / 06</div><div class="kiosk-rule kiosk-rule--spaced"></div>
+        <h2 class="kiosk-story__title">Sustainable<br>Operations</h2><div class="kiosk-rule kiosk-rule--blue kiosk-rule--top"></div>
+        <div class="kiosk-story__scroll"><p class="kiosk-story__project"><span>Project:</span> Sustainable Operations</p>
+        <p class="kiosk-story__desc"><span class="kiosk-story__desc-label">Description:</span> A global utility provider faced rising demand, wasteful consumption, and pressure to hit carbon targets across wind and water plants.</p>
+        <p class="kiosk-story__highlights-label">Highlights:</p><ul class="kiosk-story__highlights">
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>HCLTech built an intelligent energy platform unifying wind, solar and water data into one live view.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>Smart forecasting balances supply and demand and cuts waste across the grid.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>AI agents detect leaks, faults and inefficiency and trigger preventive action.</span></li>
+        <li class="kiosk-story__highlight kiosk-story__highlight--impact"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span><b>Impact:</b> Lower consumption, cleaner energy mix and measurable progress toward net-zero.</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kiosk-bottom"><div class="kiosk-progress"><b class="kiosk-progress__label">02 / 06</b><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar kiosk-progress__bar--on"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light">A SMARTER &nbsp;&nbsp; TOMORROW TOGETHER</div>
+      <button class="kiosk-btn--next kiosk-detail__next"><span class="kiosk-detail__next-label">Next</span> <span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+  </section>
+
+  <!-- STORY PAGE 03 : PEOPLE -->
+  <section class="kiosk-screen" id="kiosk-s3-3" data-story="2">
+    <div class="kiosk-detail__top">
+      <button class="kiosk-btn kiosk-reveal kiosk-reveal--d1" data-go="2"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-l"/></svg></span> Back to Stories</button>
+      <div class="kiosk-reveal kiosk-reveal--d1 kiosk-detail__actions"><button class="kiosk-btn--ghost kiosk-detail__prev" data-prev-story="1"><svg class="kiosk-icon"><use href="#kiosk-i-chev-l"/></svg> PLANET</button><button class="kiosk-btn" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button></div>
+    </div>
+    <div class="kiosk-detail__grid">
+      <div class="kiosk-reveal kiosk-reveal--d2">
+        <div class="kiosk-video">
+          <video class="kiosk-video__media" src="assets/story-3.mp4" poster="assets/story-3-people.jpg" preload="metadata" playsinline></video>
+          <div class="kiosk-video__label">PEOPLE<br>TECHNOLOGY<br>A BRIGHTER<br>TOMORROW</div>
+          <div class="kiosk-video__label-right">PEOPLE<br>LEARNING<br>REAL IMPACT</div>
+          <button class="kiosk-video__play" aria-label="Play story video"><span class="kiosk-video__play-circle"><svg class="kiosk-icon kiosk-icon--lg"><use href="#kiosk-i-play" class="kiosk-video__play-use"/></svg></span></button>
+          <div class="kiosk-video__bar"><button class="kiosk-video__btn kiosk-video__pp" aria-label="Play or pause"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-play" class="kiosk-video__pp-use"/></svg></button><b class="kiosk-video__time">0:00 / 0:15</b>
+            <div class="kiosk-video__track"><div class="kiosk-video__fill"></div></div>
+            <button class="kiosk-video__btn kiosk-video__mute" aria-label="Volume"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-vol"/></svg></button><button class="kiosk-video__btn kiosk-video__fs" aria-label="Fullscreen"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-expand"/></svg></button></div>
+        </div>
+      </div>
+      <div class="kiosk-reveal kiosk-reveal--d3">
+        <div class="kiosk-story__count">STORY 03 / 06</div><div class="kiosk-rule kiosk-rule--spaced"></div>
+        <h2 class="kiosk-story__title">People<br>and Skills</h2><div class="kiosk-rule kiosk-rule--blue kiosk-rule--top"></div>
+        <div class="kiosk-story__scroll"><p class="kiosk-story__project"><span>Project:</span> People and Skills Academy</p>
+        <p class="kiosk-story__desc"><span class="kiosk-story__desc-label">Description:</span> A large enterprise struggled with skill gaps, slow onboarding, and one-size-fits-all training that left employees behind.</p>
+        <p class="kiosk-story__highlights-label">Highlights:</p><ul class="kiosk-story__highlights">
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>HCLTech created AI mentors that personalize learning paths for every role and skill level.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>Adaptive training blends hands-on practice, coaching and real-time feedback.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>AI agents track progress, recommend next skills and automate assessments.</span></li>
+        <li class="kiosk-story__highlight kiosk-story__highlight--impact"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span><b>Impact:</b> Faster learning, higher retention and a workforce ready to adapt and grow.</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kiosk-bottom"><div class="kiosk-progress"><b class="kiosk-progress__label">03 / 06</b><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar kiosk-progress__bar--on"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light">A SMARTER &nbsp;&nbsp; TOMORROW TOGETHER</div>
+      <button class="kiosk-btn--next kiosk-detail__next"><span class="kiosk-detail__next-label">Next</span> <span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+  </section>
+
+  <!-- STORY PAGE 04 : PRODUCTS -->
+  <section class="kiosk-screen" id="kiosk-s3-4" data-story="3">
+    <div class="kiosk-detail__top">
+      <button class="kiosk-btn kiosk-reveal kiosk-reveal--d1" data-go="2"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-l"/></svg></span> Back to Stories</button>
+      <div class="kiosk-reveal kiosk-reveal--d1 kiosk-detail__actions"><button class="kiosk-btn--ghost kiosk-detail__prev" data-prev-story="2"><svg class="kiosk-icon"><use href="#kiosk-i-chev-l"/></svg> PEOPLE</button><button class="kiosk-btn" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button></div>
+    </div>
+    <div class="kiosk-detail__grid">
+      <div class="kiosk-reveal kiosk-reveal--d2">
+        <div class="kiosk-video">
+          <video class="kiosk-video__media" src="assets/story-4.mp4" poster="assets/story-4-product.jpg" preload="metadata" playsinline></video>
+          <div class="kiosk-video__label">PEOPLE<br>TECHNOLOGY<br>A BRIGHTER<br>TOMORROW</div>
+          <div class="kiosk-video__label-right">SMART<br>PRODUCTS<br>REAL IMPACT</div>
+          <button class="kiosk-video__play" aria-label="Play story video"><span class="kiosk-video__play-circle"><svg class="kiosk-icon kiosk-icon--lg"><use href="#kiosk-i-play" class="kiosk-video__play-use"/></svg></span></button>
+          <div class="kiosk-video__bar"><button class="kiosk-video__btn kiosk-video__pp" aria-label="Play or pause"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-play" class="kiosk-video__pp-use"/></svg></button><b class="kiosk-video__time">0:00 / 0:15</b>
+            <div class="kiosk-video__track"><div class="kiosk-video__fill"></div></div>
+            <button class="kiosk-video__btn kiosk-video__mute" aria-label="Volume"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-vol"/></svg></button><button class="kiosk-video__btn kiosk-video__fs" aria-label="Fullscreen"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-expand"/></svg></button></div>
+        </div>
+      </div>
+      <div class="kiosk-reveal kiosk-reveal--d3">
+        <div class="kiosk-story__count">STORY 04 / 06</div><div class="kiosk-rule kiosk-rule--spaced"></div>
+        <h2 class="kiosk-story__title">Smarter<br>Products</h2><div class="kiosk-rule kiosk-rule--blue kiosk-rule--top"></div>
+        <div class="kiosk-story__scroll"><p class="kiosk-story__project"><span>Project:</span> Smarter Connected Products</p>
+        <p class="kiosk-story__desc"><span class="kiosk-story__desc-label">Description:</span> A consumer brand wanted home and health products to do more, but devices worked in isolation with no learning or personalization.</p>
+        <p class="kiosk-story__highlights-label">Highlights:</p><ul class="kiosk-story__highlights">
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>HCLTech connected appliances and health devices into one intelligent ecosystem.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>Products sense context, learn routines and respond automatically to user needs.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>AI agents personalize comfort, safety and wellness while protecting privacy.</span></li>
+        <li class="kiosk-story__highlight kiosk-story__highlight--impact"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span><b>Impact:</b> More helpful homes, healthier living and magical everyday experiences.</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kiosk-bottom"><div class="kiosk-progress"><b class="kiosk-progress__label">04 / 06</b><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar kiosk-progress__bar--on"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light">A SMARTER &nbsp;&nbsp; TOMORROW TOGETHER</div>
+      <button class="kiosk-btn--next kiosk-detail__next"><span class="kiosk-detail__next-label">Next</span> <span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+  </section>
+
+  <!-- STORY PAGE 05 : DATA -->
+  <section class="kiosk-screen" id="kiosk-s3-5" data-story="4">
+    <div class="kiosk-detail__top">
+      <button class="kiosk-btn kiosk-reveal kiosk-reveal--d1" data-go="2"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-l"/></svg></span> Back to Stories</button>
+      <div class="kiosk-reveal kiosk-reveal--d1 kiosk-detail__actions"><button class="kiosk-btn--ghost kiosk-detail__prev" data-prev-story="3"><svg class="kiosk-icon"><use href="#kiosk-i-chev-l"/></svg> PRODUCTS</button><button class="kiosk-btn" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button></div>
+    </div>
+    <div class="kiosk-detail__grid">
+      <div class="kiosk-reveal kiosk-reveal--d2">
+        <div class="kiosk-video">
+          <video class="kiosk-video__media" src="assets/story-5.mp4" poster="assets/story-5-data.jpg" preload="metadata" playsinline></video>
+          <div class="kiosk-video__label">PEOPLE<br>TECHNOLOGY<br>A BRIGHTER<br>TOMORROW</div>
+          <div class="kiosk-video__label-right">DATA<br>INSIGHT<br>REAL IMPACT</div>
+          <button class="kiosk-video__play" aria-label="Play story video"><span class="kiosk-video__play-circle"><svg class="kiosk-icon kiosk-icon--lg"><use href="#kiosk-i-play" class="kiosk-video__play-use"/></svg></span></button>
+          <div class="kiosk-video__bar"><button class="kiosk-video__btn kiosk-video__pp" aria-label="Play or pause"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-play" class="kiosk-video__pp-use"/></svg></button><b class="kiosk-video__time">0:00 / 0:15</b>
+            <div class="kiosk-video__track"><div class="kiosk-video__fill"></div></div>
+            <button class="kiosk-video__btn kiosk-video__mute" aria-label="Volume"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-vol"/></svg></button><button class="kiosk-video__btn kiosk-video__fs" aria-label="Fullscreen"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-expand"/></svg></button></div>
+        </div>
+      </div>
+      <div class="kiosk-reveal kiosk-reveal--d3">
+        <div class="kiosk-story__count">STORY 05 / 06</div><div class="kiosk-rule kiosk-rule--spaced"></div>
+        <h2 class="kiosk-story__title">Data to<br>Decisions</h2><div class="kiosk-rule kiosk-rule--blue kiosk-rule--top"></div>
+        <div class="kiosk-story__scroll"><p class="kiosk-story__project"><span>Project:</span> Data to Decisions</p>
+        <p class="kiosk-story__desc"><span class="kiosk-story__desc-label">Description:</span> A financial services leader was drowning in fragmented reports, delayed insights and slow, inconsistent decisions.</p>
+        <p class="kiosk-story__highlights-label">Highlights:</p><ul class="kiosk-story__highlights">
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>HCLTech unified raw data into live dashboards with trusted, governed insight.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>Real-time analytics surface risks and opportunities as they happen.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>AI agents explain drivers, recommend actions and automate reporting.</span></li>
+        <li class="kiosk-story__highlight kiosk-story__highlight--impact"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span><b>Impact:</b> Clearer insight, faster choices and better, fairer outcomes at scale.</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kiosk-bottom"><div class="kiosk-progress"><b class="kiosk-progress__label">05 / 06</b><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar kiosk-progress__bar--on"></div><div class="kiosk-progress__bar"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light">A SMARTER &nbsp;&nbsp; TOMORROW TOGETHER</div>
+      <button class="kiosk-btn--next kiosk-detail__next"><span class="kiosk-detail__next-label">Next</span> <span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+  </section>
+
+  <!-- STORY PAGE 06 : CONNECT -->
+  <section class="kiosk-screen" id="kiosk-s3-6" data-story="5">
+    <div class="kiosk-detail__top">
+      <button class="kiosk-btn kiosk-reveal kiosk-reveal--d1" data-go="2"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-l"/></svg></span> Back to Stories</button>
+      <div class="kiosk-reveal kiosk-reveal--d1 kiosk-detail__actions"><button class="kiosk-btn--ghost kiosk-detail__prev" data-prev-story="4"><svg class="kiosk-icon"><use href="#kiosk-i-chev-l"/></svg> DATA</button><button class="kiosk-btn" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button></div>
+    </div>
+    <div class="kiosk-detail__grid">
+      <div class="kiosk-reveal kiosk-reveal--d2">
+        <div class="kiosk-video">
+          <video class="kiosk-video__media" src="assets/story-6.mp4" poster="assets/story-6-earth.jpg" preload="metadata" playsinline></video>
+          <div class="kiosk-video__label">PEOPLE<br>TECHNOLOGY<br>A BRIGHTER<br>TOMORROW</div>
+          <div class="kiosk-video__label-right">ONE<br>CONNECTED<br>WORLD</div>
+          <button class="kiosk-video__play" aria-label="Play story video"><span class="kiosk-video__play-circle"><svg class="kiosk-icon kiosk-icon--lg"><use href="#kiosk-i-play" class="kiosk-video__play-use"/></svg></span></button>
+          <div class="kiosk-video__bar"><button class="kiosk-video__btn kiosk-video__pp" aria-label="Play or pause"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-play" class="kiosk-video__pp-use"/></svg></button><b class="kiosk-video__time">0:00 / 0:15</b>
+            <div class="kiosk-video__track"><div class="kiosk-video__fill"></div></div>
+            <button class="kiosk-video__btn kiosk-video__mute" aria-label="Volume"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-vol"/></svg></button><button class="kiosk-video__btn kiosk-video__fs" aria-label="Fullscreen"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-expand"/></svg></button></div>
+        </div>
+      </div>
+      <div class="kiosk-reveal kiosk-reveal--d3">
+        <div class="kiosk-story__count">STORY 06 / 06</div><div class="kiosk-rule kiosk-rule--spaced"></div>
+        <h2 class="kiosk-story__title">A More<br>Connected World</h2><div class="kiosk-rule kiosk-rule--blue kiosk-rule--top"></div>
+        <div class="kiosk-story__scroll"><p class="kiosk-story__project"><span>Project:</span> A More Connected World</p>
+        <p class="kiosk-story__desc"><span class="kiosk-story__desc-label">Description:</span> Cities and communities were disconnected, with siloed systems limiting collaboration between people, services and ideas.</p>
+        <p class="kiosk-story__highlights-label">Highlights:</p><ul class="kiosk-story__highlights">
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>HCLTech built a connected network linking cities, services and citizens in real time.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>Shared platforms bring ideas, resources and support together in one place.</span></li>
+        <li class="kiosk-story__highlight"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span>AI agents translate languages, route requests and strengthen collaboration.</span></li>
+        <li class="kiosk-story__highlight kiosk-story__highlight--impact"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg><span><b>Impact:</b> Closer communities, shared ideas and stronger bonds for a brighter tomorrow.</span></li></ul></div>
+      </div>
+    </div>
+    <div class="kiosk-bottom"><div class="kiosk-progress"><b class="kiosk-progress__label">06 / 06</b><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar kiosk-progress__bar--on"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light">A SMARTER &nbsp;&nbsp; TOMORROW TOGETHER</div>
+      <button class="kiosk-btn--next kiosk-detail__next"><span class="kiosk-detail__next-label">Next</span> <span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+  </section>
+
+  <!-- SCREEN 4 : COMPLETE -->
+  <section class="kiosk-screen" id="kiosk-s4">
+    <div class="kiosk-finale__top">
+      <div class="kiosk-eyebrow kiosk-reveal kiosk-reveal--d1">STORY COMPLETE<div class="kiosk-rule kiosk-rule--blue"></div></div>
+      <button class="kiosk-btn kiosk-reveal kiosk-reveal--d1" data-go="1"><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-home"/></svg></span> Home</button>
+    </div>
+    <div class="kiosk-finale__grid">
+      <div>
+        <h1 class="kiosk-finale__title kiosk-reveal kiosk-reveal--d2">A SMARTER<br><span class="kiosk-finale__title-grad">TOMORROW</span><br>IS WITHIN REACH</h1>
+        <p class="kiosk-lede kiosk-reveal kiosk-reveal--d3" id="kiosk-finaledesc">You explored all six stories. By combining people, data and intelligent technology, we can build a safer, more efficient and more sustainable tomorrow.</p>
+        <div class="kiosk-perks kiosk-perks--finale kiosk-reveal kiosk-reveal--d4" id="kiosk-fperks"></div>
+        <div class="kiosk-btn-row kiosk-reveal kiosk-reveal--d5"><button class="kiosk-cta kiosk-cta--flush" data-go="2"><span>EXPLORE ANOTHER STORY</span><span class="kiosk-cta__arrow"><svg class="kiosk-icon"><use href="#kiosk-i-chev-r"/></svg></span></button>
+          <button class="kiosk-btn--next" id="kiosk-fnext"><span id="kiosk-fnext-label">Next Story</span><span class="kiosk-btn__icon"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-chev-r"/></svg></span></button></div>
+      </div>
+      <div class="kiosk-circle kiosk-reveal kiosk-reveal--d3"><div class="kiosk-circle__ring"></div>
+        <div class="kiosk-circle__photo"><img class="kiosk-circle__photo-img" id="kiosk-finaleimg" src="assets/finale-city.jpg" alt="Brighter tomorrow"></div>
+        <div class="kiosk-circle__caption">BRIGHTER<br>POSSIBILITIES<br>AHEAD</div>
+      </div>
+    </div>
+    <div class="kiosk-bottom"><div class="kiosk-eyebrow">AI LABS <span class="kiosk-eyebrow__normal">— &nbsp;REAL IDEAS. REAL IMPACT.</span></div>
+      <div class="kiosk-progress"><b class="kiosk-progress__label" id="kiosk-fcount">06 / 06</b><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar"></div><div class="kiosk-progress__bar kiosk-progress__bar--on"></div></div>
+      <div class="kiosk-eyebrow kiosk-eyebrow--light kiosk-eyebrow--right">THANK YOU<br>FOR EXPLORING</div></div>
+  </section>
+
+</div>
+<script>
+const KIOSK_STORIES=[
+ {t:"Factory<br>of the Future",s:"AI-POWERED MANUFACTURING FOR A SMARTER TOMORROW",d:"See how advanced technologies, AI and automation are transforming traditional manufacturing into smarter, safer and more efficient operations.",img:"assets/story-1-factory.jpg",perks:[["kiosk-i-gear","Higher<br>Efficiency","blue"],["kiosk-i-leaf","Reduced<br>Waste","green"],["kiosk-i-users","Safer<br>Workplaces","purple"]],finale:"assets/finale-nature.jpg",fd:"By combining people, data and intelligent technology, manufacturers can be safer, more efficient and more sustainable.",fp:[["kiosk-i-leaf","Greater<br>Sustainability","mint"],["kiosk-i-chart","Improved<br>Productivity","blue"],["kiosk-i-users","Stronger<br>Communities","violet"]]},
+ {t:"Sustainable<br>Operations",s:"GREATER EFFICIENCY<br>A HEALTHIER PLANET",d:"Discover how intelligent energy, wind and water systems cut waste and power a cleaner planet for everyone.",img:"assets/story-2-wind.jpg",perks:[["kiosk-i-leaf","Cleaner<br>Energy","green"],["kiosk-i-drop","Lower<br>Consumption","blue"],["kiosk-i-globe","Healthier<br>Planet","purple"]],finale:"assets/finale-field.jpg",fd:"By uniting clean energy, data and design, operations become lighter on the planet and stronger for business.",fp:[["kiosk-i-leaf","Greater<br>Sustainability","mint"],["kiosk-i-bolt","Smarter<br>Energy","blue"],["kiosk-i-globe","Greener<br>Future","violet"]]},
+ {t:"People<br>and Skills",s:"EMPOWERING<br>PEOPLE FOR WHAT'S NEXT",d:"Learn how AI mentors, adaptive training and new tools help every person learn, adapt and grow.",img:"assets/story-3-people.jpg",perks:[["kiosk-i-book","Learn<br>Faster","blue"],["kiosk-i-spark","Adapt<br>Easily","green"],["kiosk-i-rocket","Grow<br>Further","purple"]],finale:"assets/finale-team.jpg",fd:"When people are empowered with the right skills, technology amplifies human potential.",fp:[["kiosk-i-book","Lifelong<br>Learning","blue"],["kiosk-i-users","Stronger<br>Communities","violet"],["kiosk-i-rocket","Brighter<br>Careers","mint"]]},
+ {t:"Smarter<br>Products",s:"INTELLIGENT<br>SOLUTIONS FOR EVERYDAY LIFE",d:"From home to health, see how connected products sense, learn and make daily life effortless.",img:"assets/story-4-product.jpg",perks:[["kiosk-i-home","Helpful<br>At Home","blue"],["kiosk-i-heart","Healthier<br>Living","red"],["kiosk-i-spark","Magical<br>Everyday","purple"]],finale:"assets/finale-gadget.jpg",fd:"Intelligent products fade into the background — quietly making every day simpler and safer.",fp:[["kiosk-i-spark","Thoughtful<br>Design","violet"],["kiosk-i-home","Comfort<br>At Home","blue"],["kiosk-i-heart","Made For<br>People","red"]]},
+ {t:"Data to<br>Decisions",s:"TURNING DATA<br>INTO A BRIGHTER TOMORROW",d:"Watch raw data become clear, live insight — guiding faster, fairer, better decisions.",img:"assets/story-5-data.jpg",perks:[["kiosk-i-chart","Clear<br>Insight","blue"],["kiosk-i-bolt","Faster<br>Choices","yellow"],["kiosk-i-target","Better<br>Outcomes","green"]],finale:"assets/story-6-earth.jpg",fd:"With trusted data and AI insight, leaders can act with confidence and clarity.",fp:[["kiosk-i-chart","Clearer<br>Vision","blue"],["kiosk-i-bolt","Faster<br>Action","yellow"],["kiosk-i-target","Real<br>Impact","mint"]]},
+ {t:"A More<br>Connected World",s:"TECHNOLOGY<br>BRINGING US CLOSER",d:"Explore the networks linking cities, ideas and people into one brighter tomorrow.",img:"assets/story-6-earth.jpg",dark:true,perks:[["kiosk-i-globe","Closer<br>Together","blue"],["kiosk-i-bulb","Shared<br>Ideas","yellow"],["kiosk-i-users","Stronger<br>Bonds","purple"]],finale:"assets/finale-city.jpg",fd:"Connection turns bold ideas into shared progress — no one is left behind.",fp:[["kiosk-i-globe","Global<br>Connection","blue"],["kiosk-i-bulb","Shared<br>Progress","yellow"],["kiosk-i-users","Together<br>Stronger","violet"]]}
+];
+let kioskCur='1', kioskStoryIdx=0, kioskVTimer=null, kioskVSec=0, kioskPlaying=false, kioskHashSync=false, kioskDone=new Set();
+function kioskEl(id){return document.getElementById(id);}
+const kioskScreens={'1':kioskEl('kiosk-s1'),'2':kioskEl('kiosk-s2'),'4':kioskEl('kiosk-s4')};
+for(let n=1;n<=6;n++){kioskScreens['s3-'+n]=kioskEl('kiosk-s3-'+n);}
+function kioskRank(k){if(k==='1')return 0;if(k==='2')return 1;if(k.indexOf('s3-')===0)return 1+parseInt(k.slice(3),10);return 9;}
+function kioskSlug(k){if(k==='1')return '#/';if(k==='2')return '#/choose';if(k==='4')return '#/complete';return '#/story/'+k.slice(3);}
+function kioskGo(n,dir){
+  n=String(n);
+  if(!kioskScreens[n])n='1';
+  document.querySelectorAll('.kiosk-video__media').forEach(v=>v.pause());
+  if(typeof dir!=='number'){dir=kioskRank(n)>=kioskRank(kioskCur)?1:-1;}
+  const old=kioskCur; kioskCur=n;
+  Object.values(kioskScreens).forEach(s=>{if(s)s.classList.remove('kiosk-screen--active','kiosk-screen--exit-left');});
+  if(dir>0&&kioskScreens[old])kioskScreens[old].classList.add('kiosk-screen--exit-left');
+  if(kioskScreens[n])kioskScreens[n].classList.add('kiosk-screen--active');
+  if(!document.querySelector('.kiosk-screen--active')&&kioskScreens['1'])kioskScreens['1'].classList.add('kiosk-screen--active');
+  const slug=kioskSlug(n);
+  try{if(location.hash!==slug){kioskHashSync=true;location.hash=slug;}}catch(e){}
+  kioskResetIdle();
+}
+function kioskNormHash(){
+  let h=(location.hash||'').replace(/^#\/?/,'').trim().toLowerCase();
+  h=h.replace(/\/+$/,'');
+  if(!h){
+    try{
+      const pm=location.pathname.replace(/\\/g,'/').toLowerCase().replace(/\/+$/,'');
+      let m2=pm.match(/\/(choose|complete)(\/index\.html)?$/);
+      if(m2){h=m2[1];}
+      else{m2=pm.match(/\/story\/([1-6])$/);if(m2)h='story/'+m2[1];}
+    }catch(e){}
+  }
+  return h;
+}
+function kioskRoute(){
+  const h=kioskNormHash();
+  if(h===''||h==='/'){kioskGo('1',-1);return;}
+  if(h==='choose'){if(kioskCur!=='2')kioskGo('2',1);return;}
+  let m=h.match(/^story\/([1-6])$/);
+  if(m){const want='s3-'+m[1];if(kioskCur!==want)kioskOpenStory(parseInt(m[1],10)-1,true);return;}
+  if(h==='complete'){kioskShowFinale(true);return;}
+  kioskGo('1',-1);
+}
+window.addEventListener('hashchange',()=>{
+  if(kioskHashSync){kioskHashSync=false;}
+  try{if(location.hash===kioskSlug(kioskCur))return;}catch(e){return;}
+  kioskRoute();
+});
+document.addEventListener('click',e=>{
+  const pv=e.target.closest('[data-prev-story]');
+  if(pv){kioskRipple(e,pv);kioskOpenStory(+pv.dataset.prevStory);return;}
+  const nx=e.target.closest('.kiosk-detail__next');
+  if(nx){kioskRipple(e,nx);kioskCompleteStory();return;}
+  const b=e.target.closest('[data-go]'); if(b){kioskRipple(e,b); kioskGo(b.dataset.go);}
+});
+function kioskRipple(e,el){
+  const r=document.createElement('span'); r.className='kiosk-ripple';
+  const rect=el.getBoundingClientRect(); const s=Math.max(rect.width,rect.height);
+  r.style.width=r.style.height=s+'px'; r.style.left=(e.clientX-rect.left-s/2)+'px'; r.style.top=(e.clientY-rect.top-s/2)+'px';
+  el.style.position='relative'; el.style.overflow='hidden'; el.appendChild(r); setTimeout(()=>r.remove(),650);
+}
+const kioskGrid=kioskEl('kiosk-tilegrid');
+const kioskShort=['FACTORY','PLANET','PEOPLE','PRODUCTS','DATA','CONNECT'];
+KIOSK_STORIES.forEach((st,i)=>{
+  const b=document.createElement('button');
+  b.className='kiosk-tile kiosk-reveal kiosk-reveal--d'+(i%3+2)+(st.dark?' kiosk-tile--dark':'');
+  b.setAttribute('aria-label','Open story '+(i+1)+': '+kioskShort[i]);
+  b.dataset.idx=i;
+  b.innerHTML='<img class="kiosk-tile__bg" src="'+st.img+'" alt="" loading="lazy"><div class="kiosk-tile__veil"></div>'
+   +'<div class="kiosk-tile__body"><div class="kiosk-tile__num">0'+(i+1)+'</div>'
+   +'<h3 class="kiosk-tile__title">'+st.t+'</h3><p class="kiosk-tile__sub">'+st.s+'</p></div>'
+   +'<span class="kiosk-tile__go"><svg class="kiosk-icon"><use href="#kiosk-i-arrow-r"/></svg></span>'
+  +'<span class="kiosk-tile__check"><svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg></span>';
+  b.onclick=(e)=>{kioskRipple(e,b); setTimeout(()=>kioskOpenStory(i),180);};
+  kioskGrid.appendChild(b);
+});
+function kioskPerkHTML(p){return p.map(x=>'<div class="kiosk-perk"><div class="kiosk-perk__badge kiosk-perk__badge--'+x[2]+'"><svg class="kiosk-icon kiosk-icon--lg"><use href="#'+x[0]+'"/></svg></div><b class="kiosk-perk__label">'+x[1]+'</b></div>').join('');}
+function kioskOpenStory(i){
+  kioskStoryIdx=i;
+  kioskStopVideo(true);
+  kioskGo('s3-'+(i+1),1);
+}
+function kioskCompleteStory(){
+  const sec=kioskActiveDetail();
+  const idx=sec?+sec.dataset.story:kioskStoryIdx;
+  kioskStoryIdx=idx; kioskDone.add(idx); kioskVSec=0; kioskStopVideo(); kioskUpdateProgress();
+  if(kioskDone.size>=6){kioskToast('All 6 stories complete');setTimeout(()=>kioskShowFinale(),900);}
+  else{kioskToast('Story 0'+(idx+1)+' of 6 complete — pick your next story');setTimeout(()=>kioskGo('2',1),1100);}
+}
+function kioskUpdateProgress(){
+  const n=kioskDone.size;
+  const c=kioskEl('kiosk-choosecount'); if(c)c.textContent=n+' OF 6 STORIES EXPLORED';
+  const bars=kioskEl('kiosk-choosebars');
+  if(bars){Array.from(bars.children).forEach((b,i)=>b.classList.toggle('kiosk-progress__bar--on',kioskDone.has(i)));}
+  document.querySelectorAll('#kiosk-tilegrid .kiosk-tile').forEach(t=>{
+    t.classList.toggle('kiosk-tile--done',kioskDone.has(+t.dataset.idx));
+  });
+  document.querySelectorAll('.kiosk-globe__thumb').forEach(t=>{
+    t.classList.toggle('kiosk-globe__thumb--done',kioskDone.has(+t.dataset.story));
+  });
+}
+function kioskToast(msg){
+  const t=kioskEl('kiosk-toast'); if(!t)return;
+  t.innerHTML='<svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg> '+msg;
+  t.classList.add('kiosk-toast--show'); clearTimeout(kioskToast._t);
+  kioskToast._t=setTimeout(()=>t.classList.remove('kiosk-toast--show'),2200);
+}
+function kioskShowFinale(fromRoute){
+  if(kioskDone.size<6){kioskGo('2',kioskCur==='4'?-1:1);return;}
+  kioskEl('kiosk-finaledesc').textContent='You explored all six stories. By combining people, data and intelligent technology, we can build a safer, more efficient and more sustainable tomorrow.';
+  kioskEl('kiosk-fperks').innerHTML=kioskPerkHTML([["kiosk-i-leaf","Greater<br>Sustainability","mint"],["kiosk-i-users","Stronger<br>Communities","violet"],["kiosk-i-bulb","Brighter<br>Possibilities","yellow"]]);
+  kioskEl('kiosk-finaleimg').src='assets/finale-city.jpg';
+  kioskEl('kiosk-fcount').textContent='06 / 06';
+  const nl=kioskEl('kiosk-fnext-label'); if(nl){nl.textContent='Start Over';}
+  kioskStopVideo(true); kioskGo('4',1);
+}
+kioskEl('kiosk-fnext').onclick=(e)=>{
+  kioskRipple(e,e.currentTarget);
+  kioskDone.clear(); kioskVSec=0; kioskStopVideo(); kioskUpdateProgress(); kioskGo('1',-1);
+};
+function kioskActiveDetail(){return document.querySelector('.kiosk-screen--active[id^="kiosk-s3-"]');}
+function kioskFmt(s){return Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");}
+function kioskSetPlayIcon(name){
+  document.querySelectorAll('.kiosk-video__play-use,.kiosk-video__pp-use').forEach(u=>u.setAttribute('href','#'+name));
+}
+function kioskActiveVideo(){const sec=kioskActiveDetail();return sec?sec.querySelector('.kiosk-video__media'):null;}
+function kioskStartVideo(){
+  const v=kioskActiveVideo(); if(!v)return;
+  if(v.ended){try{v.currentTime=0;}catch(e){}}
+  v.play().catch(()=>{});
+}
+function kioskStopVideo(silent){
+  document.querySelectorAll('.kiosk-video--zoomed').forEach(o=>{try{kioskSetZoom(o,false);}catch(e){o.classList.remove('kiosk-video--zoomed');}});
+  kioskPlaying=false;clearInterval(kioskVTimer);kioskSetPlayIcon('kiosk-i-play');
+  document.querySelectorAll('.kiosk-video__media').forEach(v=>{v.pause();if(!silent){try{v.currentTime=0;}catch(e){}}});
+  document.querySelectorAll('.kiosk-video__play').forEach(b=>{b.style.opacity="1";b.style.pointerEvents="auto";});
+  if(!silent){kioskVSec=0;
+    document.querySelectorAll('.kiosk-video__fill').forEach(f=>f.style.width="0%");
+    document.querySelectorAll('.kiosk-video__time').forEach(t=>t.textContent="0:00 / 0:15");}
+}
+function kioskToggleVideo(){
+  const v=kioskActiveVideo();
+  if(v&&!v.paused&&!v.ended){v.pause();}
+  else{kioskStartVideo();}
+}
+document.querySelectorAll('.kiosk-video__play,.kiosk-video__pp').forEach(b=>b.addEventListener('click',kioskToggleVideo));
+function kioskIsZoomed(box){return box.classList.contains('kiosk-video--zoomed');}
+function kioskSetZoom(box,on){
+  if(on&&!box.dataset.kioskHome){box.dataset.kioskHome='1';const ph=document.createComment('kiosk-video-home');box.parentNode.insertBefore(ph,box);box._kioskPh=ph;box._kioskParent=ph.parentNode;document.body.appendChild(box);}
+  box.classList.toggle('kiosk-video--zoomed',on);const use=box.querySelector('.kiosk-video__fs use');if(use)use.setAttribute('href',on?'#kiosk-i-shrink':'#kiosk-i-expand');
+  if(!on&&box._kioskPh){try{box._kioskPh.parentNode.insertBefore(box,box._kioskPh);box._kioskPh.remove();}catch(e){}box._kioskPh=null;}
+}
+document.querySelectorAll('.kiosk-video__fs').forEach(b=>b.addEventListener('click',(e)=>{
+  e.stopPropagation();kioskResetIdle();
+  const box=b.closest('.kiosk-video');if(!box)return;
+  const entering=!kioskIsZoomed(box);
+  document.querySelectorAll('.kiosk-video--zoomed').forEach(o=>{if(o!==box)kioskSetZoom(o,false);});
+  kioskSetZoom(box,entering);
+  try{
+    if(entering){const req=box.requestFullscreen||box.webkitRequestFullscreen;if(req){const r=req.call(box);if(r&&r.catch)r.catch(()=>{});}}
+    else{if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});}
+  }catch(err){}
+}));
+document.addEventListener('fullscreenchange',()=>{
+  if(!document.fullscreenElement)document.querySelectorAll('.kiosk-video--zoomed').forEach(o=>kioskSetZoom(o,false));
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.kiosk-video--zoomed').forEach(o=>kioskSetZoom(o,false));});
+document.querySelectorAll('.kiosk-video__mute').forEach(b=>b.addEventListener('click',()=>{
+  const v=b.closest('.kiosk-video').querySelector('.kiosk-video__media'); if(!v)return;
+  v.muted=!v.muted; b.style.opacity=v.muted?".45":"1";
+}));
+document.querySelectorAll('.kiosk-video__media').forEach(v=>{
+  const sec=v.closest('section');
+  const fill=sec.querySelector('.kiosk-video__fill'),time=sec.querySelector('.kiosk-video__time'),big=sec.querySelector('.kiosk-video__play');
+  const paint=()=>{const d=v.duration||15;fill.style.width=(v.currentTime/d*100)+"%";time.textContent=kioskFmt(v.currentTime)+" / "+kioskFmt(d);};
+  const icons=playing=>{
+    sec.querySelectorAll('.kiosk-video__play-use,.kiosk-video__pp-use').forEach(u=>u.setAttribute('href',playing?'#kiosk-i-pause':'#kiosk-i-play'));
+    big.style.opacity=playing?"0":"1";big.style.pointerEvents=playing?"none":"auto";};
+  v.addEventListener('play',()=>{kioskPlaying=true;clearInterval(kioskVTimer);icons(true);});
+  v.addEventListener('pause',()=>{kioskPlaying=false;icons(false);});
+  v.addEventListener('timeupdate',paint);
+  v.addEventListener('loadedmetadata',paint);
+  v.addEventListener('ended',()=>{setTimeout(()=>kioskCompleteStory(),800);});
+  sec.querySelector('.kiosk-video__track').addEventListener('click',(e)=>{
+    const d=v.duration||15;const r=e.currentTarget.getBoundingClientRect();
+    try{v.currentTime=d*Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));}catch(err){}
+    paint();});
+});
+let kioskIdle=0;setInterval(()=>{kioskIdle+=1;const bar=kioskEl('kiosk-idlebar');if(bar)bar.style.width=Math.min(100,kioskIdle/90*100)+"%";
+  if(kioskIdle>=90){kioskIdle=0;kioskVSec=0;kioskDone.clear();kioskStopVideo();kioskUpdateProgress();kioskGo('1',-1);}},1000);
+function kioskResetIdle(){kioskIdle=0;const bar=kioskEl('kiosk-idlebar');if(bar)bar.style.width="0";}
+["touchstart","mousedown","keydown"].forEach(ev=>document.addEventListener(ev,kioskResetIdle,{passive:true}));
+document.addEventListener('keydown',e=>{
+  if(e.key==="ArrowRight"){
+    if(kioskCur==='1')kioskGo('2',1);
+    else if(kioskCur==='2')kioskOpenStory(0);
+    else if(kioskCur.indexOf('s3-')===0)kioskCompleteStory();
+    else if(kioskCur==='4'){kioskGo('2',-1);}
+  }
+  if(e.key==="ArrowLeft"){
+    if(kioskCur==='4')kioskGo('2',-1);
+    else if(kioskCur.indexOf('s3-')===0){const n=parseInt(kioskCur.slice(3),10);if(n>1)kioskOpenStory(n-2);else kioskGo('2',-1);}
+    else if(kioskCur==='2')kioskGo('1',-1);
+  }
+});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+kioskEl('kiosk-fsbtn').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{});};
+document.querySelectorAll('.kiosk-globe__thumb').forEach(btn=>{
+  btn.addEventListener('click',e=>{e.stopPropagation();kioskRipple(e,btn);kioskOpenStory(+btn.dataset.story);});
+});
+document.querySelectorAll('.kiosk-globe__thumb').forEach(th=>{
+  const c=document.createElement('span'); c.className='kiosk-globe__thumb-check';
+  c.innerHTML='<svg class="kiosk-icon kiosk-icon--sm"><use href="#kiosk-i-check"/></svg>';
+  th.appendChild(c);
+});
+(function kioskBoot(){
+  try{
+    const h=kioskNormHash();
+    let m=h.match(/^story\/([1-6])$/);
+    if(h==='choose'){kioskGo('2',1);return;}
+    if(m){kioskOpenStory(parseInt(m[1],10)-1,true);return;}
+    if(h==='complete'){kioskShowFinale(true);return;}
+    kioskStoryIdx=0; kioskUpdateProgress(); kioskGo('1',-1);
+  }catch(e){try{kioskGo('1',-1);}catch(_){}}
+  if(!document.querySelector('.kiosk-screen--active')){try{kioskScreens['1'].classList.add('kiosk-screen--active');}catch(_){}}
+})();
+</script>
+</body>
+</html>
