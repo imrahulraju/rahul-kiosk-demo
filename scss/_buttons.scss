@@ -18,6 +18,9 @@
   margin-top: 22px;
   min-height: 72px;
   font-family: inherit;
+  text-decoration: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 
   &:active {
     transform: scale(.96);
@@ -34,6 +37,12 @@
 
   &--flush {
     margin-top: 0;
+  }
+
+  &, * {
+    text-decoration: none;
+    text-decoration-line: none;
+    -webkit-text-decoration-line: none;
   }
 
   &__arrow {
@@ -67,6 +76,9 @@
   cursor: pointer;
   box-shadow: 0 10px 28px rgba(10, 40, 90, .1);
   font-family: inherit;
+  text-decoration: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 
   &:active {
     transform: scale(.96);
@@ -97,6 +109,9 @@
     cursor: pointer;
     box-shadow: 0 16px 40px rgba(15, 107, 255, .45);
     font-family: inherit;
+    text-decoration: none;
+    text-decoration-line: none;
+    -webkit-text-decoration-line: none;
 
     &:active {
       transform: scale(.96);

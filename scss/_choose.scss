@@ -63,12 +63,19 @@
 
 .kiosk-tiles {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   gap: clamp(12px, 1.4vw, 20px);
   flex: 1;
   min-height: 0;
   margin-top: 14px;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  align-items: center;
+  justify-items: stretch;
 }
 
 .kiosk-tile {
@@ -82,6 +89,8 @@
   text-align: left;
   color: inherit;
   min-height: 0;
+  aspect-ratio: 16 / 10;
+  max-height: 48vh;
   transition: transform .25s $kiosk-ease, box-shadow .25s;
   display: flex;
   font-family: inherit;
@@ -153,7 +162,7 @@
   }
 
   &__title {
-    font-size: clamp(18px, 1.9vw, 29px);
+    font-size: clamp(24px, 2.6vw, 40px);
     line-height: 1.02;
     letter-spacing: -.02em;
     margin-top: 14px;

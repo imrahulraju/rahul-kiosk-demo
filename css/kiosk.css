@@ -278,7 +278,7 @@ body {
 }
 .kiosk-globe__thumb {
   position: absolute;
-  width: 124px;
+  width: 148px;
   border-radius: 14px;
   overflow: visible;
   background: #fff;
@@ -295,33 +295,13 @@ body {
   transform: scale(0.92);
 }
 .kiosk-globe__thumb--s1 {
-  top: -5%;
-  left: 6%;
+  top: 42%;
+  left: -4%;
 }
 .kiosk-globe__thumb--s2 {
-  top: 4%;
-  right: -9%;
-  animation-delay: -1s;
-}
-.kiosk-globe__thumb--s3 {
   top: 42%;
-  right: -15%;
-  animation-delay: -2s;
-}
-.kiosk-globe__thumb--s4 {
-  bottom: 2%;
-  right: -6%;
-  animation-delay: -3s;
-}
-.kiosk-globe__thumb--s5 {
-  bottom: -6%;
-  left: 20%;
-  animation-delay: -4s;
-}
-.kiosk-globe__thumb--s6 {
-  top: 42%;
-  left: -15%;
-  animation-delay: -5s;
+  right: -4%;
+  animation-delay: -1.2s;
 }
 .kiosk-globe__thumb--done .kiosk-globe__thumb-check {
   opacity: 1;
@@ -329,7 +309,7 @@ body {
 }
 .kiosk-globe__thumb-img {
   width: 100%;
-  height: 70px;
+  height: 84px;
   object-fit: cover;
   display: block;
   border-radius: 11px 11px 0 0;
@@ -434,6 +414,9 @@ body {
   margin-top: 22px;
   min-height: 72px;
   font-family: inherit;
+  text-decoration: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 }
 .kiosk-cta:active {
   transform: scale(0.96);
@@ -448,6 +431,11 @@ body {
 }
 .kiosk-cta--flush {
   margin-top: 0;
+}
+.kiosk-cta, .kiosk-cta * {
+  text-decoration: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 }
 .kiosk-cta__arrow {
   width: 56px;
@@ -484,6 +472,9 @@ body {
   cursor: pointer;
   box-shadow: 0 10px 28px rgba(10, 40, 90, 0.1);
   font-family: inherit;
+  text-decoration: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 }
 .kiosk-btn:active {
   transform: scale(0.96);
@@ -512,6 +503,9 @@ body {
   cursor: pointer;
   box-shadow: 0 16px 40px rgba(15, 107, 255, 0.45);
   font-family: inherit;
+  text-decoration: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 }
 .kiosk-btn--next:active {
   transform: scale(0.96);
@@ -610,12 +604,19 @@ body {
 
 .kiosk-tiles {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   gap: clamp(12px, 1.4vw, 20px);
   flex: 1;
   min-height: 0;
   margin-top: 14px;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  align-items: center;
+  justify-items: stretch;
 }
 
 .kiosk-tile {
@@ -629,6 +630,8 @@ body {
   text-align: left;
   color: inherit;
   min-height: 0;
+  aspect-ratio: 16/10;
+  max-height: 48vh;
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s;
   display: flex;
   font-family: inherit;
@@ -689,7 +692,7 @@ body {
   color: #bcd0ea;
 }
 .kiosk-tile__title {
-  font-size: clamp(18px, 1.9vw, 29px);
+  font-size: clamp(24px, 2.6vw, 40px);
   line-height: 1.02;
   letter-spacing: -0.02em;
   margin-top: 14px;

@@ -70,7 +70,7 @@
 
   &__thumb {
     position: absolute;
-    width: 124px;
+    width: 148px;
     border-radius: 14px;
     overflow: visible;
     background: $kiosk-card;
@@ -87,12 +87,8 @@
       transform: scale(.92);
     }
 
-    &--s1 { top: -5%; left: 6%; }
-    &--s2 { top: 4%; right: -9%; animation-delay: -1s; }
-    &--s3 { top: 42%; right: -15%; animation-delay: -2s; }
-    &--s4 { bottom: 2%; right: -6%; animation-delay: -3s; }
-    &--s5 { bottom: -6%; left: 20%; animation-delay: -4s; }
-    &--s6 { top: 42%; left: -15%; animation-delay: -5s; }
+    &--s1 { top: 42%; left: -4%; }
+    &--s2 { top: 42%; right: -4%; animation-delay: -1.2s; }
 
     &--done .kiosk-globe__thumb-check {
       opacity: 1;
@@ -102,7 +98,7 @@
 
   &__thumb-img {
     width: 100%;
-    height: 70px;
+    height: 84px;
     object-fit: cover;
     display: block;
     border-radius: 11px 11px 0 0;
